@@ -1,4 +1,4 @@
-package java_core;
+package java_core_1;
 
 public interface InterfacePractice {
     // interface variables are final and static by default

@@ -1,8 +1,4 @@
-package java_core;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Stack;
+package java_core_1;
 
 public class StringConcepts {
     public static void main(String[] args) {
@@ -16,8 +12,6 @@ public class StringConcepts {
         System.out.println(s.hashCode());
         String s1 = "Krishna";
         System.out.println(s1.hashCode());
-        ArrayList<Integer> arrayList = new ArrayList<>();
-       int a =10;
-        String.valueOf(a);
+        System.out.println(s==s1); // == checks reference
     }
 }

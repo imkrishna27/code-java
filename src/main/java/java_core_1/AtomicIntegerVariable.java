@@ -1,8 +1,4 @@
-package java_core;
-
-import java.util.Queue;
-import java.util.Random;
-import java.util.concurrent.atomic.AtomicInteger;
+package java_core_1;
 
 public class AtomicIntegerVariable {
     static class Counter {

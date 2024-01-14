@@ -1,7 +1,10 @@
 package stream.model;
 
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
+@NoArgsConstructor
 public class Employee implements Serializable {
     private String empName;
     private String empTitle;
@@ -12,6 +15,10 @@ public class Employee implements Serializable {
         this.empName = empName;
         this.empTitle = empTitle;
         this.salary = salary;
+    }
+
+    public Employee(Employee obj) {
+        this(new String(obj.empName),new String(obj.empTitle),new Integer(obj.salary));
     }
 
     public String getEmpName() {

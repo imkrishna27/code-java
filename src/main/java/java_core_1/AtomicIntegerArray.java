@@ -1,4 +1,4 @@
-package java_core;
+package java_core_1;
 
 public class AtomicIntegerArray {
     private static java.util.concurrent.atomic.AtomicIntegerArray atomicIntegerArray = new java.util.concurrent.atomic.AtomicIntegerArray(5);
