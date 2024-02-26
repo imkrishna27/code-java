@@ -39,8 +39,8 @@ public class CollectorsImpl {
         Map<Boolean, List<Integer>> collect7 = collectors.arr.stream().collect(Collectors.partitioningBy(d -> d % 2 == 0));
         System.out.println(collect7);
         //teeing --> combining results of two collectors
-        Long collect8 = collectors.arr.stream().collect(Collectors.teeing(Collectors.summingInt(Integer::intValue), Collectors.counting(), (first, second) -> first + second));
-        System.out.println(collect8);
+        // Long collect8 = collectors.arr.stream().collect(Collectors.teeing(Collectors.summingInt(Integer::intValue), Collectors.counting(), (first, second) -> first + second));
+        // System.out.println(collect8);
 
 
     }

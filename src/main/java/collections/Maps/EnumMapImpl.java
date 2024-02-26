@@ -20,7 +20,7 @@ public class EnumMapImpl {
      */
     private static void implement() {
         EnumMap<Weekdays,String> enumMap = new EnumMap<>(Weekdays.class);
-        enumMap.put(Weekdays.Monday,"Cricket");
+        enumMap.put(Weekdays.MONDAY,"Cricket");
         for(Map.Entry<Weekdays,String> map : enumMap.entrySet()) {
             System.out.println(map
             );

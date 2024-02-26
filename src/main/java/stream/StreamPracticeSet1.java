@@ -1,15 +1,15 @@
 package stream;
 
+import lombok.ToString;
 import stream.model.Person;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.Arrays.asList;
 
+@ToString
 public class StreamPracticeSet1 {
     public static void main(String[] args) {
         sortArrayIncreasingAndDecreasingOrder(Arrays.asList(76,3,232,12,3));
@@ -18,6 +18,21 @@ public class StreamPracticeSet1 {
         findingMinAndMax(Arrays.asList(76,3,232,12,3));
         skipElements(Arrays.asList(76,3,232,12,3));
         operationsOnObjects();
+        findDuplicateElementsAndCreateCountMap("aa","a","cc","a","aa","d","e","a");
+        partitionByEventOddCount(1,2,3,4,5,34,2,32,4);
+    }
+
+    private static void partitionByEventOddCount(Integer... data) {
+        Map<Boolean, Long> collect = Arrays.stream(data).map(ele -> ele.intValue()).collect(Collectors.partitioningBy(ele -> ele % 2 == 0, Collectors.counting()));
+        System.out.println("count of even odd : "+ collect);
+    }
+
+    private static void findDuplicateElementsAndCreateCountMap(String... data) {
+        Map<String, Long> collect = Arrays.stream(data)
+                .collect(Collectors.groupingBy(String::valueOf, Collectors.counting()))
+                .entrySet().stream().filter(stringLongEntry -> stringLongEntry.getValue()>1)
+                .collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+        System.out.println("duplicate string count : "+ collect);
     }
 
     private static void operationsOnObjects() {
@@ -29,8 +44,8 @@ public class StreamPracticeSet1 {
         List<String> names = collection.stream().filter(p -> p.getAge() > 4).map(Person::getName).collect(Collectors.toList());
         System.out.println("name who have age more than 4 are: "+names);
         // out of names take out all the characters
-        List<char[]> listOfAllChars = names.stream().flatMap(name -> Arrays.stream(name.split(","))).map(ch -> ch.toCharArray()).collect(Collectors.toList());
-        System.out.println("list of all characters are" + listOfAllChars);
+        List<Character> listOfAllChars2 = names.stream().flatMap(s -> s.chars().mapToObj(ch -> (char) ch)).map(Character::toLowerCase).collect(Collectors.toList());
+        System.out.println("list of all chars using chars() " + listOfAllChars2);
     }
 
     private static void skipElements(List<Integer> asList) {
@@ -42,7 +57,10 @@ public class StreamPracticeSet1 {
     private static void findingMinAndMax(List<Integer> asList) {
         Optional<Integer> max = asList.stream().max(Comparator.comparing(Integer::intValue, (x, y) -> x.compareTo(y)));
         Optional<Integer> min = asList.stream().min(Comparator.comparing(Integer::intValue, (x, y) -> x.compareTo(y)));
-        System.out.println("minimum and maximum are "+min+" "+max);
+        Optional<Integer> max1 = asList.stream().max(Comparator.naturalOrder());
+        Optional<Integer> min1 = asList.stream().min(Comparator.naturalOrder());
+        System.out.println("minimum and maximum are "+min.get()+" "+max.get());
+        System.out.println("minimum and maximum are using precise lambda statements "+min1.get()+" "+max1.get());
     }
 
     private static void reduceArray(List<Integer> asList) {
@@ -68,5 +86,10 @@ public class StreamPracticeSet1 {
         // decreasing order
         List<Integer> dcollect = asList.stream().sorted(Comparator.comparing(Integer::intValue, (x, y) -> y.compareTo(x))).collect(Collectors.toList());
         System.out.println("Stream in decreasing order "+ dcollect);
+        // other way around can be
+        List<Integer> increasingOrder = asList.stream().sorted().collect(Collectors.toList());
+        System.out.println("Stream in increasing order using sorted() default behavior "+ increasingOrder);
+        List<Integer> decreasingOrder = asList.stream().sorted(Comparator.reverseOrder()).collect(Collectors.toList());
+        System.out.println("Stream in decreasing order using sorted() reverse behavior "+ decreasingOrder);
     }
 }

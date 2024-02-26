@@ -43,7 +43,7 @@ public class StreamPracticeSet3 {
         List<Integer> integers = Arrays.asList(33,44,5,6,3,12,55,6,67,55);
         System.out.println(strings.stream().collect(Collectors.toList()));
         // Reducing to a string
-        System.out.println(strings.stream().collect(Collectors.joining(",","`","`")));
+        System.out.println("joining : " + strings.stream().collect(Collectors.joining(",","`","`")));
         /* Collectors has many operation where we can reduce our array to take sum, avg and statistical info */
         System.out.println(integers.stream().collect(Collectors.partitioningBy(d-> d>15)));
         /* Pushing collector to perform additional information */

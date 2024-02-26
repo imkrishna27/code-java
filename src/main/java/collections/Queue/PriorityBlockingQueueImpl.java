@@ -1,6 +1,7 @@
 package collections.Queue;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
