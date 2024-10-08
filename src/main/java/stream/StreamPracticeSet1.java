@@ -20,6 +20,12 @@ public class StreamPracticeSet1 {
         operationsOnObjects();
         findDuplicateElementsAndCreateCountMap("aa","a","cc","a","aa","d","e","a");
         partitionByEventOddCount(1,2,3,4,5,34,2,32,4);
+        printDuplicateElements();
+    }
+
+    private static void printDuplicateElements() {
+        List<Integer> integers = List.of(1, 1, 1, 2, 3);;
+        System.out.println(Arrays.toString(integers.stream().filter(e -> Collections.frequency(integers, e) > 1).toArray()));
     }
 
     private static void partitionByEventOddCount(Integer... data) {
